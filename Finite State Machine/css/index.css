@@ -1,0 +1,224 @@
+body{
+    background-color: #544aab;
+    margin-bottom: 9.5rem;
+}
+.header{
+    width: 100%;
+    height: 7.02rem;
+    position: relative;
+    background: url("img/header.png") no-repeat;
+    background-size: 100% 100%;
+}
+#cardWord{
+    display: block;
+    position: absolute;
+    box-sizing: border-box;
+    width: 100%;
+    background-color: #8c8c8c;
+    color: #fff;
+    height:1.6rem;
+    top:0;
+    z-index: 99;
+    text-align: center;
+    line-height: .6rem;
+    font-size: 16px;
+    padding-top: .15rem;
+}
+#cardWord em{
+    color: #ffd630;
+    font-size: 20px;
+    font-style: italic;
+}
+#ac1{
+    display: block;
+    height: 100%;
+    font-size: .30rem;
+    line-height: 1.5rem;
+/*    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);*/
+}
+
+.banner{
+    height: 4.02rem;
+    width: 6.64rem;
+    position: relative;
+    top:-1.5rem;
+    left: .3rem;
+    background: url("img/guanzhuhaoli.png") no-repeat;
+    background-size: 100% 100%;
+    z-index: -1;
+}
+.article{
+    width: 5.46rem;
+    height: 9.69rem;
+    background: url("img/bg.png") no-repeat;
+    background-size: 100% 100%;
+    position: absolute;
+    top:8.8rem;
+    left: .9rem;
+    /*box-sizing: border-box;*/
+}
+.publicAll{
+    width: 4.9rem;
+    height: 2.75rem;
+    box-sizing: border-box;
+    /*background-color: #00a8e6;*/
+    margin-top: .4rem;
+    margin-left: .6rem;
+}
+.avatar{
+    width: 1.43rem;
+    height: 1.59rem;
+    float: left;
+}
+.fontCommon{
+    float: left;
+    margin-left: .3rem;
+    line-height: .5rem;
+}
+.publicTitle{
+    margin-top: .45rem;
+    color: white;
+    font-size: .36rem;
+    font-family: "黑体";
+}
+.publicDes{
+    color: #d0cded;
+    font-size: .28rem;
+    font-family: "黑体";
+}
+.followBtn{
+    width: 4.28rem;
+    height: .91rem;
+    background: url("img/huafei.png") no-repeat;
+    background-size: 100% 100%;
+    margin-top: 1.6rem;
+    clear: both;
+}
+.followBtn1{
+    background: url("img/zhijia.png") no-repeat;
+    background-size: 100% 100%;
+}
+.followBtn2{
+    background: url("img/zipaigan.png") no-repeat;
+    background-size: 100% 100%;
+}
+.connect{
+    display: block;
+    width: .81rem;
+    height: 1.75rem;
+    background: url("img/lianjie.png");
+    background-size: 100% 100%;
+    position: absolute;
+    top:17.6rem;
+    left: .6rem;
+    z-index: -3;
+}
+.rule{
+    width: 5.4rem;
+    height: 3.05rem;
+    background-color: #786ecf;
+    border: solid black 3px;
+    border-radius: 1rem;
+    position: relative;
+    top:7.8rem;
+    left: .9rem;
+    margin-bottom: 1.1rem;
+}
+.rule span{
+    display: block;
+    width: 100%;
+    font-family: '黑体';
+    font-size: .24rem;
+    color: white;
+    line-height: .4rem;
+    padding-left: .46rem;
+    padding-top: .35rem;
+}
+/*遮罩*/
+.bigCover{
+    position: fixed;
+    width: 100%;
+    height: 50rem;
+    background-color: rgba(0,0,0,.5);
+    top:0;
+    z-index: 99;
+}
+
+/*弹层部分*/
+.ac1Box{
+    position: fixed;
+    width: 6.2rem;
+    height: 4rem;
+    background-color: #453d8b;
+    opacity:.85;
+    top:3.2rem;
+    left:.4rem;
+    z-index: 9990;
+    text-align: center;
+    border: solid 4px darkgray;
+    border-radius: .1rem;
+}
+.lotteryInfo{
+    color: #fff;
+    margin-top: .4rem;
+    font-size: .3rem;
+    line-height: .6rem;
+    font-family:"微软雅黑";
+}
+.inputs{
+    width: 4.8rem;
+    height: .5rem;
+    box-sizing: border-box;
+    margin-top: .3rem;
+    border-radius: .06rem;
+    padding-left: 1rem;
+    background-color: rgba(255,255,255,.7);
+}
+::-webkit-input-placeholder {
+    color:rgba(0,0,0,.6);
+}
+
+.btn{
+    display: inline-block;
+    width: 50%;
+    height: .9rem;
+    box-sizing: border-box;
+    position: absolute;
+    bottom: 0;
+    line-height: .9rem;
+    font-size: .31rem;
+}
+.cancel{
+    left: 0;
+    color: rgba(255,255,255,.95);
+    border-top: solid 2px rgba(255,255,255,.5);
+}
+.confirm{
+    color: #fbe100;
+    right:0;
+    border-top: solid 2px rgba(255,255,255,.5);
+    border-left: solid 2px rgba(255,255,255,.5);
+}
+.a1Text{
+    padding-top: .5rem;
+}
+.a2Text{
+    padding-top: .4rem;
+}
+.ac2R{
+    height: 6rem;
+    top:2.4rem;
+}
+.a2Text2{
+    width: 80%;
+    margin: 0 auto;
+    padding-top: .4rem;
+    font-size: .28rem;
+}
+.hide{
+    display: none;
+}

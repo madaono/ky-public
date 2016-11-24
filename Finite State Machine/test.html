@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <meta content="email=no" name="format-detection">
+    <link rel="stylesheet" href="css/base.css">
+    <title>Title</title>
+</head>
+
+<body>
+
+
+
+<script src="phone-rem.js" type="text/javascript"></script>
+<script src="zepto.min.js" type="text/javascript"></script>
+<script src="zapya.mobile.js" type="text/javascript"></script>
+<script src="state-machine.js" type="text/javascript"></script>
+<script type="text/javascript">
+    var _gIsLogin,_ut,_ltoken,fStatus,_gLotteryStatus,count1,count2,count3,count4,i,j;//i为传公众号的组数别，j为参加活动的mark[j]
+    var mark = ["THGIVEN1","THGIVEN2","THGIVEN3"];
+    var needFollow=0; //有O跟1两个状态.1需要关注后才能抽奖,默认为0这个可以通过按钮传个值
+//    最后将整个状态机封装为一个可配置的函数
+    var ids=[];//里面是需要关注的ID号ids[i]
+
+
+    fake();
+    function fake() {
+        _ut="1a59ce08bb410d575e94e25cc7f98a97";
+        Zapya.isValidUser=function () {
+            return true;
+        };
+        Zapya.isLogin=function () {
+            return true;
+        };
+        Zapya.getToken=function () {
+            return "1a59ce08bb410d575e94e25cc7f98a97";
+        }
+    }
+    function getHost() {
+//        return "http://lottery.kuaiya.cn";
+        return "http://210.73.213.236";
+    }
+
+    var fsm = StateMachine.create({
+        initial: 'init',
+        events: [
+            { name: 'startInit',  from: 'init',  to: 'initDone' },
+            { name: 'follow', from: 'initDone', to: 'followDone' },
+            { name: 'lotteryFol',  from: 'followDone', to: 'lotteryDone' },
+            { name: 'lottery', from: 'initDone', to: 'lotteryDone'  },
+
+        ],
+        callbacks:{
+            oninit:function (event,from,to) {
+                if(Zapya.isValidUser()){
+                    _gIsLogin = Zapya.isLogin();
+//                    _ut=Zapya.getToken().split('=')[1];
+                }else{
+                    Zapya.opMsgBox({strText:'亲爱的牙粉请点击下方下载快牙参与',duration:3000});
+                    Zapya.addInstallGuid();
+                }
+            },
+            onleaveinit:function () {
+                $.get(getHost()+"/active/init?ut="+_ut+"&mark="+mark,function (data) {
+                    JsObj = JSON.parse(data);
+                    count1 = JsObj.mark[0];
+                    count2 = JsObj.mark[1];
+                    count3 = JsObj.mark[2];
+                    count4 = JsObj.mark[3];
+                });
+                console.log(count1,count2,count3,count4);
+            },
+            onfollowDone:function () {
+                $.get(getHost()+"/active/follow?ut="+_ut+"&mark="+mark[j]+'&lottery=1'+'&ids='+ids[i],function (data) {
+                    JsObj = JSON.parse(data);
+                    _ltoken = data.ltoken;
+                    fStatus = data.status;
+                });
+            },
+            onenterlotteryDone:function () {
+                //获取中奖情况
+                $.get(getHost()+"/active/lottery?ut="+_ut+"&mark="+mark+"&ltoken="+_ltoken,function (data) {
+                    JsObj = JSON.parse(data);
+                    _gLotteryStatus = data.status;
+                    //奖品的类型
+                    //奖品的名字
+                });
+            },
+            onlotteryDone:function () {
+                //显示弹窗等JS生成
+                var $giftBox = $("#giftBox");
+                var $fareBox = $("#fareBox");
+                var $ydBox = $("#ydBox");
+                var $noCandyBox = $("#noCandyBox");
+                var $confirm = $("#confirm");
+                var $cancels = $(".cancel");
+                if (实物){
+
+                }else if(话费){
+
+                }else if(yadou){
+
+                }else{
+//                    meizhong
+                }
+            }
+        }
+    });
+
+
+//    点击按钮的ON，绑定到BODY上
+    fsm.startInit();
+    fsm.lottery();
+    console.log(fsm.states() );
+    if(count1 || count2 || count3 || count4){
+        if(needFollow){
+            fsm.follow();
+            if(fStatus==1){
+                fsm.lotteryFol();
+            }else{
+                //没关注成功
+            }
+        }else{
+            fsm.lottery();
+        }
+    }else{
+//        今天的机会都完了，取消所有按钮的点击事件，改为一个小提示框
+    }
+
+</script>
+</body>
+</html>
